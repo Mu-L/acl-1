@@ -67,19 +67,17 @@ namespace acl
 	inline bool decompression_context<decompression_settings_type>::initialize(const compressed_tracks& tracks)
 	{
 		constexpr bool skip_safety_checks = decompression_settings_type::skip_initialize_safety_checks();
-		if constexpr (!skip_safety_checks)
-		{
-			const error_result error = tracks.is_valid(false);
-			const bool is_valid = error.empty();
-			ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
-			if (!is_valid)
-				return false;	// Invalid compressed tracks instance
 
-			const bool is_version_supported = version_impl_type::is_version_supported(tracks.get_version());
-			ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
-			if (!is_version_supported)
-				return false;
-		}
+		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
+		const bool is_valid = skip_safety_checks || error.empty();
+		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		if (!is_valid)
+			return false;	// Invalid compressed tracks instance
+
+		const bool is_version_supported = skip_safety_checks || version_impl_type::is_version_supported(tracks.get_version());
+		ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
+		if (!is_version_supported)
+			return false;
 
 		const database_context<db_settings_type>* database = nullptr;
 		return version_impl_type::template initialize<decompression_settings_type>(m_context, tracks, database);
@@ -89,28 +87,26 @@ namespace acl
 	inline bool decompression_context<decompression_settings_type>::initialize(const compressed_tracks& tracks, const database_context<db_settings_type>& database)
 	{
 		constexpr bool skip_safety_checks = decompression_settings_type::skip_initialize_safety_checks();
-		if constexpr (!skip_safety_checks)
-		{
-			const error_result error = tracks.is_valid(false);
-			const bool is_tracks_valid = error.empty();
-			ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
-			if (!is_tracks_valid)
-				return false;	// Invalid compressed tracks instance
 
-			const bool is_database_valid = database.is_initialized();
-			ACL_ASSERT(is_database_valid, "Invalid compressed database instance");
-			if (!is_database_valid)
-				return false;	// Invalid compressed database instance
+		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
+		const bool is_tracks_valid = skip_safety_checks || error.empty();
+		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		if (!is_tracks_valid)
+			return false;	// Invalid compressed tracks instance
 
-			const bool is_version_supported = version_impl_type::is_version_supported(tracks.get_version());
-			ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
-			if (!is_version_supported)
-				return false;
+		const bool is_database_valid = skip_safety_checks || database.is_initialized();
+		ACL_ASSERT(is_database_valid, "Invalid compressed database instance");
+		if (!is_database_valid)
+			return false;	// Invalid compressed database instance
 
-			const bool is_contained_in_db = database.contains(tracks);
-			if (!is_contained_in_db)
-				return false;
-		}
+		const bool is_version_supported = skip_safety_checks || version_impl_type::is_version_supported(tracks.get_version());
+		ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
+		if (!is_version_supported)
+			return false;
+
+		const bool is_contained_in_db = skip_safety_checks || database.contains(tracks);
+		if (!is_contained_in_db)
+			return false;
 
 		return version_impl_type::template initialize<decompression_settings_type>(m_context, tracks, &database);
 	}
@@ -128,19 +124,17 @@ namespace acl
 			return false;	// Not initialized, cannot be relocated
 
 		constexpr bool skip_safety_checks = decompression_settings_type::skip_initialize_safety_checks();
-		if constexpr (!skip_safety_checks)
-		{
-			const error_result error = tracks.is_valid(false);
-			const bool is_valid = error.empty();
-			ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
-			if (!is_valid)
-				return false;	// Invalid compressed tracks instance
 
-			const bool is_version_supported = version_impl_type::is_version_supported(tracks.get_version());
-			ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
-			if (!is_version_supported)
-				return false;
-		}
+		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
+		const bool is_valid = skip_safety_checks || error.empty();
+		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		if (!is_valid)
+			return false;	// Invalid compressed tracks instance
+
+		const bool is_version_supported = skip_safety_checks || version_impl_type::is_version_supported(tracks.get_version());
+		ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
+		if (!is_version_supported)
+			return false;
 
 		const database_context<db_settings_type>* database = nullptr;
 		return version_impl_type::template relocated<decompression_settings_type>(m_context, tracks, database);
@@ -153,28 +147,26 @@ namespace acl
 			return false;	// Not initialized, cannot be relocated
 
 		constexpr bool skip_safety_checks = decompression_settings_type::skip_initialize_safety_checks();
-		if constexpr (!skip_safety_checks)
-		{
-			const error_result error = tracks.is_valid(false);
-			const bool is_tracks_valid = error.empty();
-			ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
-			if (!is_tracks_valid)
-				return false;	// Invalid compressed tracks instance
 
-			const bool is_database_valid = database.is_initialized();
-			ACL_ASSERT(is_database_valid, "Invalid compressed database instance");
-			if (!is_database_valid)
-				return false;	// Invalid compressed database instance
+		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
+		const bool is_tracks_valid = skip_safety_checks || error.empty();
+		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		if (!is_tracks_valid)
+			return false;	// Invalid compressed tracks instance
 
-			const bool is_version_supported = version_impl_type::is_version_supported(tracks.get_version());
-			ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
-			if (!is_version_supported)
-				return false;
+		const bool is_database_valid = skip_safety_checks || database.is_initialized();
+		ACL_ASSERT(is_database_valid, "Invalid compressed database instance");
+		if (!is_database_valid)
+			return false;	// Invalid compressed database instance
 
-			const bool is_contained_in_db = database.contains(tracks);
-			if (!is_contained_in_db)
-				return false;
-		}
+		const bool is_version_supported = skip_safety_checks || version_impl_type::is_version_supported(tracks.get_version());
+		ACL_ASSERT(is_version_supported, "Unsupported version: %u", tracks.get_version());
+		if (!is_version_supported)
+			return false;
+
+		const bool is_contained_in_db = skip_safety_checks || database.contains(tracks);
+		if (!is_contained_in_db)
+			return false;
 
 		return version_impl_type::template relocated<decompression_settings_type>(m_context, tracks, &database);
 	}
