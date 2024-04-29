@@ -70,7 +70,7 @@ namespace acl
 
 		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
 		const bool is_valid = skip_safety_checks || error.empty();
-		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: " ACL_ASSERT_STRING_FORMAT_SPECIFIER, error.c_str());
 		if (!is_valid)
 			return false;	// Invalid compressed tracks instance
 
@@ -90,7 +90,7 @@ namespace acl
 
 		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
 		const bool is_tracks_valid = skip_safety_checks || error.empty();
-		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: " ACL_ASSERT_STRING_FORMAT_SPECIFIER, error.c_str());
 		if (!is_tracks_valid)
 			return false;	// Invalid compressed tracks instance
 
@@ -127,7 +127,7 @@ namespace acl
 
 		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
 		const bool is_valid = skip_safety_checks || error.empty();
-		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		ACL_ASSERT(is_valid, "Invalid compressed tracks instance: " ACL_ASSERT_STRING_FORMAT_SPECIFIER, error.c_str());
 		if (!is_valid)
 			return false;	// Invalid compressed tracks instance
 
@@ -150,7 +150,7 @@ namespace acl
 
 		const error_result error = skip_safety_checks ? error_result() : tracks.is_valid(false);
 		const bool is_tracks_valid = skip_safety_checks || error.empty();
-		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: %s", error.c_str());
+		ACL_ASSERT(is_tracks_valid, "Invalid compressed tracks instance: " ACL_ASSERT_STRING_FORMAT_SPECIFIER, error.c_str());
 		if (!is_tracks_valid)
 			return false;	// Invalid compressed tracks instance
 
