@@ -115,6 +115,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/naetherm"><img src="https://avatars.githubusercontent.com/u/16878712?v=4?s=100" width="100px;" alt="naetherm"/><br /><sub><b>naetherm</b></sub></a><br /><a href="https://github.com/nfrechette/acl/commits?author=naetherm" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/TetraSomia"><img src="https://avatars.githubusercontent.com/u/19408647?v=4?s=100" width="100px;" alt="Arthur Josso"/><br /><sub><b>Arthur Josso</b></sub></a><br /><a href="https://github.com/nfrechette/acl/commits?author=TetraSomia" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yusuf-PG"><img src="https://avatars.githubusercontent.com/u/168181217?v=4?s=100" width="100px;" alt="Yusuf Ismail"/><br /><sub><b>Yusuf Ismail</b></sub></a><br /><a href="https://github.com/nfrechette/acl/commits?author=Yusuf-PG" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
