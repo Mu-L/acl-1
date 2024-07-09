@@ -80,11 +80,11 @@ jobs:
         with:
           args: 'python3 make.py -ci -compiler ${{ matrix.compiler }} -config Release -cpu x64 -avx -regression_test'
 
-  osx-12:
-    runs-on: macos-12
+  osx-14:
+    runs-on: macos-14
     strategy:
       matrix:
-        compiler: [xcode14]
+        compiler: [xcode15]
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
@@ -92,20 +92,20 @@ jobs:
           submodules: 'recursive'
       - name: Setup ${{ matrix.compiler }} compiler
         run: ./tools/setup_osx_compiler.sh ${{ matrix.compiler }}
-      - name: Building (release-x64)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -build
-      - name: Running unit tests (release-x64)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -unit_test
-      - name: Running regression tests (release-x64)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -regression_test
+      - name: Building (release-arm64)
+        run: python3 make.py -ci -compiler osx -config Release -build
+      - name: Running unit tests (release-arm64)
+        run: python3 make.py -ci -compiler osx -config Release -unit_test
+      - name: Running regression tests (release-arm64)
+        run: python3 make.py -ci -compiler osx -config Release -regression_test
       - name: Clean
         run: python3 make.py -ci -clean_only
-      - name: Building (release-x64 nosimd)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -nosimd -build
-      - name: Running unit tests (release-x64 nosimd)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -nosimd -unit_test
-      - name: Running regression tests (release-x64 nosimd)
-        run: python3 make.py -ci -compiler osx -config Release -cpu x64 -nosimd -regression_test
+      - name: Building (release-arm64 nosimd)
+        run: python3 make.py -ci -compiler osx -config Release -nosimd -build
+      - name: Running unit tests (release-arm64 nosimd)
+        run: python3 make.py -ci -compiler osx -config Release -nosimd -unit_test
+      - name: Running regression tests (release-arm64 nosimd)
+        run: python3 make.py -ci -compiler osx -config Release -nosimd -regression_test
       - name: Clean
         run: python3 make.py -ci -clean_only
       - name: Building for iOS (release-arm64)
